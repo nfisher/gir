@@ -45,7 +45,7 @@ Punctuator        = ('!' | '$' | '(' | ')' | '...' | ':' | '=' |
                        BooleanValue | NullValue | EnumValue);
 
 
-  ListStart         = '[';
-  List              = (PrimitiveValue)* ']';
-  ListParser       := List @{ fret; };
+  #ListStart         = '[';
+  #List              = (PrimitiveValue)* ']';
+  #ListParser       := List @{ fret; };
 }%%

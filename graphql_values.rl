@@ -14,7 +14,6 @@ main := |*
 					BooleanValue  => { em.Emit(ts, te, BooleanValue, data); };
 					NullValue     => { em.Emit(ts, te, NullValue, data); };
 					EnumValue     => { em.Emit(ts, te, EnumValue, data); };
-          ListStart     => { fcall ListParser; };
 					Ignored       => { /* Ignore */ };
 				*|;
 }%%
