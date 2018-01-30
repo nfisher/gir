@@ -1,15 +1,17 @@
 SHELL := /bin/sh
 
 SRC := $(wildcard *.go)
+RLSRC := graphql_collections.rl graphql_values.rl
+GEN := $(RLSRC:.rl=.go)
 
 .PHONY: all
 all: lint.out vet.out coverage.out 
 
 .PHONY: install
-install: graphql_collections.go $(SRC)
+install: $(RLSRC) $(GEN) $(SRC)
 	go install -v
 
-cover.out: $(SRC)
+cover.out: $(RLSRC) $(GEN) $(SRC)
 	go test -v -cover -covermode atomic -coverprofile cover.out .
 
 coverage.out: cover.out
@@ -21,9 +23,14 @@ vet.out: install
 lint.out: install
 	golint | tee lint.out
 
+.PHONY: test
+test: cover.out	
+
 .PHONY: clean
 clean:
 	go clean -i ./...
+	$(RM) *.out
+	$(RM) $(GEN)
 
-graphql_collections.go: graphql_collections.rl
-	ragel -G2 -Z graphql_collections.rl
+%.go: %.rl $(RLSRC)
+	ragel -G2 -Z $<

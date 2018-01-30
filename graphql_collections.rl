@@ -4,7 +4,7 @@ package gir
 %%{
   machine graphql_collections;
 
-  include graphql_values "graphql_values.rl";
+  include graphql_common "graphql_common.rl";
 
   # List              = []@{ fcall Value; } ']';
   # ListParser        := List @{ fret; };
@@ -33,21 +33,20 @@ main := |*
 				*|;
 }%%
 
-%% write data;
+%% write data nofinal;
 
-func ParseQuery(data []byte) {
-}
-
-func ParseValues(data []byte, em Emitter) {
+func ParseQuery(data []byte, em Emitter) {
   var token Token
+  var stack []int
   cs, p, pe, eof := 0, 0, len(data), len(data)
-  ts, te, act := 0, 0, 0
+  ts, te, act, top := 0, 0, 0, 0
   _ = eof
   _ = act
   _ = token
+  _ = stack
+  _ = top
 
   %% write init;
 
   %% write exec;
 }
-

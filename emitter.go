@@ -27,6 +27,8 @@ const (
 	FloatValue
 	// IntValue is the enum for a int token.
 	IntValue
+	// List is the enum for a list token.
+	List
 	// Name is the enum for a name token.
 	Name
 	// NullValue is the enum for a null token.
