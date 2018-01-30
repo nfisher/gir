@@ -1,6 +1,7 @@
 %%{
   machine graphql_common;
-Punctuator        = ('!' | '$' | '(' | ')' | '...' | ':' | '=' |
+
+  Punctuator        = ('!' | '$' | '(' | ')' | '...' | ':' | '=' |
                         '@' | '[' | ']' | '{' | '|' | '}');
 
   SourceCharacter   = 0x09 | 0x0a | 0x0d | (0x20..0x7e) |
@@ -41,11 +42,13 @@ Punctuator        = ('!' | '$' | '(' | ')' | '...' | ':' | '=' |
 
   EnumValue         = (Name -- (BooleanValue | NullValue));
 
-  PrimitiveValue    = (Variable | IntValue | FloatValue | StringValue |
-                       BooleanValue | NullValue | EnumValue);
+  ArgStart          = '(';
+  ArgEnd            = ')';
 
+  ListStart         = '[';
+  ListEnd           = ']';
 
-  #ListStart         = '[';
-  #List              = (PrimitiveValue)* ']';
-  #ListParser       := List @{ fret; };
+  ObjectStart       = '{';
+  ObjectEnd         = '}';
+
 }%%

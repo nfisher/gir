@@ -61,6 +61,9 @@ var testValues = []struct {
 	{"string with escape",
 		`  "\"Hello\t\r\nWorld\""  `, []gir.Token{{Start: 2, End: 24, Type: gir.StringValue}},
 	},
+	{"string without termination",
+		`  "\"Hello\t\r\nWorld\"  `, []gir.Token{},
+	},
 }
 
 func equalTo(a, b []gir.Token) bool {
